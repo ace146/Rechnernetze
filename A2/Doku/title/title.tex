@@ -1,0 +1,71 @@
+\begin{titlepage}
+
+
+ \def\theThesisAuthor{Mario Hanna, Matthias Szykora}
+ \def\theThesisType{Praktikumsprotokoll}
+ \def\theThesisTitle{Versuch 2: Statisches Routing}
+ \def\theThesisSubTitle{Rechnernetze}
+ 
+  \thispagestyle{empty}%
+  \enlargethispage{\footskip}%
+  \setlength{\parindent}{0em} % remove indent
+  \sffamily % the title page in sans serif
+
+  \begin{textblock*}{2cm}(10cm,2cm)
+    \begin{minipage}[r]{\textwidth}%
+      \if@haw@printer % hide logo if printer is true
+      \relax
+      \else
+      \includegraphics[width=10cm]{pic/logo}%
+      \fi
+    \end{minipage}%
+  \end{textblock*}
+
+  %% color bar
+  \begin{textblock*}{11cm}(0cm,9cm)
+    \colorbox{SkyBlue}{%
+      %% use a minipage that is the size of the colored banner
+      %% center the minipage
+      \begin{minipage}[l][10cm][c]{\paperwidth}%
+        %% put the box on the right side
+        \hspace*{0.25\textwidth}
+        \parbox[t]{0.7\textwidth}{%
+          {\centering\bfseries\Huge\theThesisType
+
+          \bigskip
+          \Large\theThesisAuthor
+
+          \vspace{2em}
+          \theThesisTitle
+
+          \bigskip
+          \large\theThesisSubTitle\par
+        }}%
+      \end{minipage}%
+    }
+  \end{textblock*}
+
+
+
+  \newlength{\xpos}
+  \newlength{\fw}
+  \setlength{\xpos}{1.5cm}
+  \setlength{\fw}{\paperwidth}
+  \addtolength{\fw}{-12\xpos}
+  
+  \begin{textblock*}{2cm}(\xpos,0.85\paperheight)
+    \begin{minipage}[c]{\fw}
+      \centering\newlength{\tw}
+      \settowidth{\tw}{Studiendepartment Informations- und Elektrotechnik}
+      \parbox[t]{\tw}{%
+        \normalfont\itshape%
+        Fakultät Technik und Informatik\\
+        Technische Informatik
+      }
+    \end{minipage}
+  \end{textblock*}
+
+\null
+\newpage
+
+\end{titlepage}

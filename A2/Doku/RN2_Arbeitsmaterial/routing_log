@@ -1,0 +1,62 @@
+networker@lab28:~> sudo /sbin/route add -net 192.168.17.0/24 gw 192.168.18.1 eth1
+networker@lab28:~> /sbin/route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         141.22.26.1     0.0.0.0         UG    0      0        0 eth0
+141.22.26.0     0.0.0.0         255.255.254.0   U     0      0        0 eth0
+172.16.1.0      0.0.0.0         255.255.255.0   U     0      0        0 eth2
+192.168.17.0    192.168.18.1    255.255.255.0   UG    0      0        0 eth1
+192.168.18.0    0.0.0.0         255.255.255.0   U     0      0        0 eth1 
+
+
+networker@lab37:~> sudo /sbin/route add -net 192.168.18.0/24 gw 192.168.17.1 eth1
+networker@lab37:~> /sbin/route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         141.22.26.1     0.0.0.0         UG    0      0        0 eth0
+141.22.26.0     0.0.0.0         255.255.254.0   U     0      0        0 eth0
+172.16.1.0      0.0.0.0         255.255.255.0   U     0      0        0 eth2
+192.168.17.0    0.0.0.0         255.255.255.0   U     0      0        0 eth1
+192.168.18.0    192.168.17.1    255.255.255.0   UG    0      0        0 eth1
+
+
+networker@lab28:~> /sbin/arp
+Address                  HWtype  HWaddress           Flags Mask            Iface
+141.22.26.1              ether   6c:50:4d:ae:b4:00   C                     eth0
+192.168.18.1             ether   00:60:47:50:39:44   C                     eth1
+networker@lab28:~> 
+
+
+networker@lab28:~> /usr/sbin/traceroute 192.168.17.17
+traceroute to 192.168.17.17 (192.168.17.17), 30 hops max, 60 byte packets
+ 1  192.168.18.1 (192.168.18.1)  4.483 ms  6.014 ms  7.558 ms
+ 3  * * *
+ 2  192.168.17.17 (192.168.17.17)  68.942 ms  80.098 ms  92.523 ms
+networker@lab28:~>
+
+networker@lab28:~> /usr/local/netperf/netperf -H 192.168.17.17
+TCP STREAM TEST to 192.168.17.17
+Recv	Send	Send	
+Socket	Send	Message	Elapsed
+Size	Size	Size	time	Throughput
+bytes 	bytes	bytes	secs.	10^6bits/sec
+
+ 87380	 16384	16384	21.99	   0.05
+networker@lab28:~>
+
+
+networker@lab28:~> ping -R 192.168.17.17
+PING 192.168.17.17 (192.168.17.17) 56(124) bytes of data.
+64 bytes from 192.168.17.17: icmp_seq=1 ttl=62 time=48.5 ms
+RR:     192.168.18.132
+		192.168.20.2
+		192.168.17.1
+        192.168.17.17
+        192.168.17.17
+        192.168.20.1
+        192.168.18.1
+        192.168.18.132
+
+64 bytes from 192.168.17.17: icmp_seq=2 ttl=62 time=48.4 ms    (same route)
+64 bytes from 192.168.17.17: icmp_seq=3 ttl=62 time=48.4 ms    (same route)
+64 bytes from 192.168.17.17: icmp_seq=4 ttl=62 time=48.5 ms    (same route)

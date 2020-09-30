@@ -1,0 +1,31 @@
+\documentclass[draft=false
+              ,paper=a4
+              ,twoside=false
+              ,fontsize=10pt
+              ,headsepline
+              ,BCOR10mm
+              ,DIV10
+              ]{scrbook}
+
+\usepackage[left=2cm,right=2cm,top=1cm,bottom=1cm,includeheadfoot]{geometry}              
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[german,refpage]{nomencl}
+\usepackage[pdftex]{graphicx}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[automark,autooneside]{scrpage2}
+\usepackage{xkeyval}
+\usepackage{calc}
+\usepackage[absolute]{textpos}
+\usepackage{lipsum}
+\usepackage[table]{xcolor} % Für farbige Tabellenzellen
+\usepackage{colortbl} % Für farbige Tabellenzellen mit cellcolor
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{%
+  \parbox{\textwidth}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}\vskip-4pt}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\lstset{frame=lrb,xleftmargin=\fboxsep,xrightmargin=-\fboxsep}
+\renewcommand\lstlistingname{Konsolenausgabe} % Listing Name
